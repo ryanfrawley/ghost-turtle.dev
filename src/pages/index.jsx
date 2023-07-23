@@ -16,6 +16,8 @@ import logoClickTherapeutics from "@/images/logos/click-therapeutics.svg";
 import logoTreasuryPrime from "@/images/logos/treasury-prime.svg";
 import logoBitFrame from "@/images/logos/bitframe.svg";
 import logoEndava from "@/images/logos/endava.svg";
+import logoAws from "@/images/logos/aws.svg";
+import logoScaledAgile from "@/images/logos/scaled-agile.svg";
 import image1 from "@/images/photos/image-1.jpg";
 import image2 from "@/images/photos/image-2.jpg";
 import image3 from "@/images/photos/image-3.jpg";
@@ -44,6 +46,19 @@ function MailIcon(props) {
       <path
         d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
         className="stroke-zinc-400 dark:stroke-zinc-500"
+      />
+    </svg>
+  );
+}
+
+function CertIcon(props) {
+  return (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" {...props}>
+      <path
+        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9"
       />
     </svg>
   );
@@ -108,11 +123,67 @@ function SocialLink({ icon: Icon, ...props }) {
   );
 }
 
-function Resume() {
-  let resume = [
+function ResumeSection({ icon: Icon, name, children }) {
+  return (
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <Icon className="h-6 w-6 flex-none" />
+        <span className="ml-3">{name}</span>
+      </h2>
+      <ol className="mt-6 space-y-4">
+        {children}
+      </ol>
+    </div>
+  );
+}
+
+function Certifications() {
+  let certs = [
+    {
+      name: "AWS Solutions Architect Associate",
+      year: "2021",
+      logo: logoAws,
+    },
+    {
+      name: "Scaled Agile Scrum Master",
+      year: "2019",
+      logo: logoScaledAgile,
+    },
+  ];
+
+  return (
+    <ResumeSection name="Certifications" icon={CertIcon}>
+      {certs.map((cert, index) => (
+        <li key={index} className="flex gap-4">
+          <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <Image src={cert.logo} alt="" className="h-7 w-7" unoptimized />
+          </div>
+          <dl className="flex flex-auto flex-wrap gap-x-2">
+            <dt className="sr-only">Name</dt>
+            <dd className="flex items-center text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              {cert.name}
+            </dd>
+            <dt className="sr-only">Attained</dt>
+            <dd
+              className="ml-auto flex items-center text-xs text-zinc-400 dark:text-zinc-500"
+              aria-label={cert.year}
+            >
+              <time dateTime={cert.year}>
+                {cert.year}
+              </time>
+            </dd>
+          </dl>
+        </li>
+      ))}
+    </ResumeSection>
+  );
+}
+
+function Jobs() {
+  let jobs = [
     {
       company: "BitFrame",
-      title: "CEO",
+      title: "CEO & Founder",
       logo: logoBitFrame,
       start: "2019",
       end: {
@@ -124,15 +195,18 @@ function Resume() {
       company: "Click Therapeutics",
       title: "Senior React Native Engineer",
       logo: logoClickTherapeutics,
-      start: "2014",
-      end: "2019",
+      start: "2023",
+      end: {
+        label: "Present",
+        dateTime: new Date().getFullYear(),
+      },
     },
     {
       company: "Treasury Prime",
       title: "Frontend Team Lead",
       logo: logoTreasuryPrime,
       start: "2022",
-      end: "2022",
+      end: "2023",
     },
     {
       company: "Endava, Inc.",
@@ -144,50 +218,49 @@ function Resume() {
   ];
 
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work Experience</span>
-      </h2>
-      <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <li key={roleIndex} className="flex gap-4">
-            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
-            </div>
-            <dl className="flex flex-auto flex-wrap gap-x-2">
-              <dt className="sr-only">Company</dt>
-              <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {role.company}
-              </dd>
-              <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-                {role.title}
-              </dd>
-              <dt className="sr-only">Date</dt>
-              <dd
-                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${
-                  role.end.label ?? role.end
-                }`}
-              >
-                <time dateTime={role.start.dateTime ?? role.start}>
-                  {role.start.label ?? role.start}
-                </time>{" "}
-                <span aria-hidden="true">—</span>{" "}
-                <time dateTime={role.end.dateTime ?? role.end}>
-                  {role.end.label ?? role.end}
-                </time>
-              </dd>
-            </dl>
-          </li>
-        ))}
-      </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
-    </div>
+    <ResumeSection name="Work Experience" icon={BriefcaseIcon}>
+      {jobs.map((role, roleIndex) => (
+        <li key={roleIndex} className="flex gap-4">
+          <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+          </div>
+          <dl className="flex flex-auto flex-wrap gap-x-2">
+            <dt className="sr-only">Company</dt>
+            <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              {role.company}
+            </dd>
+            <dt className="sr-only">Role</dt>
+            <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+              {role.title}
+            </dd>
+            <dt className="sr-only">Date</dt>
+            <dd
+              className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+              aria-label={`${role.start.label ?? role.start} until ${
+                role.end.label ?? role.end
+              }`}
+            >
+              <time dateTime={role.start.dateTime ?? role.start}>
+                {role.start.label ?? role.start}
+              </time>{" "}
+              <span aria-hidden="true">—</span>{" "}
+              <time dateTime={role.end.dateTime ?? role.end}>
+                {role.end.label ?? role.end}
+              </time>
+            </dd>
+          </dl>
+        </li>
+      ))}
+    </ResumeSection>
+  );
+}
+
+function Resume() {
+  return (
+    <>
+      <Jobs />
+      <Certifications />
+    </>
   );
 }
 
@@ -280,8 +353,16 @@ export default function Home({ articles }) {
               <Article key={article.slug} article={article} />
             ))}
           </div>
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
+          <div className="space-y-4 lg:pl-16 xl:pl-24">
             <Resume />
+            <Button
+              href="#"
+              variant="secondary"
+              className="group mt-6 w-full shadow-sm border border-gray-100"
+            >
+              Download CV
+              <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+            </Button>
           </div>
         </div>
       </Container>
