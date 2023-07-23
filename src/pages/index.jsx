@@ -16,7 +16,9 @@ import logoClickTherapeutics from "@/images/logos/click-therapeutics.svg";
 import logoTreasuryPrime from "@/images/logos/treasury-prime.svg";
 import logoBitFrame from "@/images/logos/bitframe.svg";
 import logoEndava from "@/images/logos/endava.svg";
+import logoValtech from "@/images/logos/valtech.svg";
 import logoAws from "@/images/logos/aws.svg";
+import logoMajesco from "@/images/logos/majesco.svg";
 import logoScaledAgile from "@/images/logos/scaled-agile.svg";
 import image1 from "@/images/photos/image-1.jpg";
 import image2 from "@/images/photos/image-2.jpg";
@@ -209,11 +211,25 @@ function Jobs() {
       end: "2023",
     },
     {
-      company: "Endava, Inc.",
+      company: "Endava",
       title: "Engineering Manager",
       logo: logoEndava,
-      start: "2020",
+      start: "2019",
       end: "2022",
+    },
+    {
+      company: "Valtech Solutions",
+      title: "Senior Software Engineer",
+      logo: logoValtech,
+      start: "2017",
+      end: "2019",
+    },
+    {
+      company: "Majesco",
+      title: "Mobile Architect",
+      logo: logoMajesco,
+      start: "2015",
+      end: "2017",
     },
   ];
 
@@ -358,7 +374,7 @@ export default function Home({ articles }) {
             <Button
               href="#"
               variant="secondary"
-              className="group mt-6 w-full shadow-sm border border-gray-100"
+              className="group mt-6 w-full shadow-sm"
             >
               Download CV
               <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />

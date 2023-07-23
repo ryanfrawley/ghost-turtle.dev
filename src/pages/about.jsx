@@ -11,6 +11,7 @@ import {
   TwitterIcon,
 } from "@/components/SocialIcons";
 import portraitImage from "@/images/portrait.jpg";
+import { GITHUB, INSTAGRAM, LINKEDIN, TWITTER } from "@/utils/socials";
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -97,22 +98,22 @@ export default function About() {
           <div className="lg:pl-20">
             <ul role="list">
               <SocialLink
-                href="https://twitter.com/gh0st_turtle"
+                href={TWITTER}
                 icon={TwitterIcon}
               >
                 Follow on Twitter
               </SocialLink>
               <SocialLink
-                href="https://instagram.com/ryanfrawley"
+                href={INSTAGRAM}
                 icon={InstagramIcon}
                 className="mt-4"
               >
                 Follow on Instagram
               </SocialLink>
-              <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+              <SocialLink href={GITHUB} icon={GitHubIcon} className="mt-4">
                 Follow on GitHub
               </SocialLink>
-              <SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+              <SocialLink href={LINKEDIN} icon={LinkedInIcon} className="mt-4">
                 Follow on LinkedIn
               </SocialLink>
               <SocialLink
