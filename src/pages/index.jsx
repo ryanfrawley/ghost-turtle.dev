@@ -17,6 +17,7 @@ import logoTreasuryPrime from "@/images/logos/treasury-prime.svg";
 import logoBitFrame from "@/images/logos/bitframe.svg";
 import logoEndava from "@/images/logos/endava.svg";
 import logoValtech from "@/images/logos/valtech.svg";
+import logoFedex from "@/images/logos/fedex.svg";
 import logoAws from "@/images/logos/aws.svg";
 import logoMajesco from "@/images/logos/majesco.svg";
 import logoScaledAgile from "@/images/logos/scaled-agile.svg";
@@ -231,6 +232,13 @@ function Jobs() {
       logo: logoMajesco,
       start: "2015",
       end: "2017",
+    },
+    {
+      company: "FedEx Trade Networks",
+      title: "Junior Engineer",
+      logo: logoFedex,
+      start: "2014",
+      end: "2015",
     },
   ];
 
