@@ -20,6 +20,7 @@ import logoValtech from "@/images/logos/valtech.svg";
 import logoAws from "@/images/logos/aws.svg";
 import logoMajesco from "@/images/logos/majesco.svg";
 import logoScaledAgile from "@/images/logos/scaled-agile.svg";
+import ghostTurtle from "@/images/ghost-turtle.svg";
 import image1 from "@/images/photos/image-1.jpg";
 import image2 from "@/images/photos/image-2.jpg";
 import image3 from "@/images/photos/image-3.jpg";
@@ -327,36 +328,44 @@ export default function Home({ articles }) {
         />
       </Head>
       <Container className="mt-9">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software designer, founder, & espresso{" "}
-            <strike className="text-gray-400">snob</strike> afficionado
-          </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Ryan, a software designer and entrepreneur based in Miami. I’m
-            the founder and CEO of BitFrame, where we build software for
-            photographers to manage their studio and deliverables.
-          </p>
-          <div className="mt-6 flex gap-6">
-            <SocialLink
-              href={TWITTER}
-              aria-label="Follow on Twitter"
-              icon={TwitterIcon}
-            />
-            <SocialLink
-              href={INSTAGRAM}
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href={GITHUB}
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
-            <SocialLink
-              href={LINKEDIN}
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
+        <div className="flex">
+          <div className="max-w-2xl flex-shrink-0">
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+              Software designer, founder, & espresso{" "}
+              <strike className="text-gray-400">snob</strike> afficionado
+            </h1>
+            <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+              I’m Ryan, a software designer and entrepreneur based in Miami. I’m
+              the founder and CEO of BitFrame, where we build software for
+              photographers to manage their studio and deliverables.
+            </p>
+            <div className="mt-6 flex gap-6">
+              <SocialLink
+                href={TWITTER}
+                aria-label="Follow on Twitter"
+                icon={TwitterIcon}
+              />
+              <SocialLink
+                href={INSTAGRAM}
+                aria-label="Follow on Instagram"
+                icon={InstagramIcon}
+              />
+              <SocialLink
+                href={GITHUB}
+                aria-label="Follow on GitHub"
+                icon={GitHubIcon}
+              />
+              <SocialLink
+                href={LINKEDIN}
+                aria-label="Follow on LinkedIn"
+                icon={LinkedInIcon}
+              />
+            </div>
+          </div>
+          <div className="flex w-full max-h-full justify-end">
+            <Image
+              src={ghostTurtle}
+              className="max-w-full max-h-[350px] -mt-10"
             />
           </div>
         </div>
