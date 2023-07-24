@@ -1,11 +1,15 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
 import Image from 'next/image'
 import wordle from './wordle.jpg'
+import wheelOfFortune from './wheel-of-fortune.jpeg'
 import { GITHUB } from '@/utils/socials';
+import LetterFrequenciesChart from './LetterFrequenciesChart';
+import WordAnalysis from './WordAnalysis';
+import WordScores from './WordScores';
 
 export const meta = {
   author: 'Ryan Frawley',
-  date: '2022-02-28',
+  date: '2023-07-23',
   title: 'The Best Wordle Starting Word',
   description:
     'When the addicting 5-letter guessing game went viral, I quickly fell in love and wondered how I could increase my odds.',
@@ -13,9 +17,9 @@ export const meta = {
 
 export default (props) => <ArticleLayout meta={meta} {...props} />
 
-Wordle is one of those games that took our post-pandemic brains by storm. It captivated (and distracted) millions around the world, at a time when we needed it. I remember sharing my results with friends and family, and feeling a competitive spark to beat the puzzle in fewer guesses than them. So naturally, my engineering instincts kicked as I challenged myself to find the best starting word.
+Wordle is one of those games that took our post-pandemic brains by storm. It captivated (and distracted) millions around the world, at a time when we needed it. I remember sharing my results with friends and family, and feeling a competitive spark to beat the puzzle in fewer guesses than them. So naturally, my engineering instincts kicked in as I challenged myself to find the best starting word.
 
-All of the code for this article is available on my <a href={`${GITHUB}/wordle`}>GitHub</a>.
+The code I wrote for this article is available on <a href={`${GITHUB}/wordle`}>GitHub</a>.
 
 <Image src={wordle} alt="A Wordle puzzle with &quot;salet&quot; entered as the first guess." />
 
@@ -25,26 +29,125 @@ All of the code for this article is available on my <a href={`${GITHUB}/wordle`}
 
 Wordle is a guessing game. Your task is to guess the random 5-letter word of the day, by entering one guess at a time, up to a total of 6 times. Each time you guess a word, any letters that your guess has in common with the answer will be revealed in either yellow or green: yellow if the letter is correct, but not the position, and green if both the letter and position are correct. Because each guess eliminates future possibilities, it's important to use a good starting word. For example, you wouldn't want to start with a word like `ZULUS`, as it has the uncommon letter `Z`, and a repeating vowel `U`.
 
-## The First Guess
-The first guess is the most important guess. This board is a blank canvas, waiting for you to starting eliminating possibilities. In order to come up with the ideal starting word, we need to find a word that has the highest probability of having matching letters out of a randomly chosen 5-letter word. To do this, we can start by analyzing the frequencies of each letter, as well as their positions.
+## A Starting Point
+The first guess is the most important. The board is a blank canvas, waiting for you to start eliminating possibilities. In order to come up with the ideal starting word, we need to find a word that has the highest probability of having matching letters out of a randomly chosen 5-letter word. To do this, we can start by counting the frequencies of each letter in the set of 5-letter words:
 
-```
-// Letters sorted in frequency-order
-[
-  [ 'a', 8392 ], [ 'e', 7800 ],
-  [ 's', 6537 ], [ 'o', 5219 ],
-  [ 'r', 5143 ], [ 'i', 5067 ],
-  [ 'l', 4246 ], [ 't', 4189 ],
-  [ 'n', 4043 ], [ 'u', 3361 ],
-  [ 'd', 2811 ], [ 'c', 2744 ],
-  [ 'y', 2521 ], [ 'm', 2494 ],
-  [ 'p', 2299 ], [ 'h', 2284 ],
-  [ 'b', 2089 ], [ 'g', 1971 ],
-  [ 'k', 1743 ], [ 'f', 1238 ],
-  [ 'w', 1171 ], [ 'v', 878 ],
-  [ 'z', 474 ],  [ 'j', 376 ],
-  [ 'x', 361 ],  [ 'q', 139 ]
-]
+<LetterFrequenciesChart />
+<center>*Letter frequencies in all 5-letter English words*</center>
+
+Those of you with a keen eye may have noticed that the first few letters match up closely with the starting letters in the final round of Wheel of Fortune `R S T L N E`. Though `A` appears to be more common than `E` in the chart above, this is only because we're limiting ourselves to 5-letter words. If we again count using all English words of any length, we find that `E` occurs roughly 27.2% more than `A`!
+
+<Image src={wheelOfFortune} alt="A scene from the final round of Wheel of Fortune." />
+
+### Breaking Down the Results
+
+`A` is the most common vowel, coming in at 8,392 uses. `S` is the most common consonant, clocking in at 6,537 appearances. The next most-common letter is `R`, at 5,143 uses. We could stop right here and come up with a word that contains all of the top letters: `A E S O R` such as `AROSE`. That's a pretty good starting word, but we can do better.
+
+## Why We Can't "Arise" to Victory
+
+Why isn't `AROSE` the best word? After all, it uses all of the top five letters we just calculated. It turns out we overlooked one important detail: **letter positions**. If all letters had an equal 1/5 or 20% chance of appearing in any given position in a word, "arose" would be one of the best words. However, this is not the case. For example, it turns out that `S` is almost 6% more likely to appear as the first letter than the fourth letter in a word.
+
+<WordAnalysis word="arose" frequencies={[
+  0.0736901620806634,
+  0.07230807890438497,
+  0.0724965447920593,
+  0.04529463500439754,
+  0.11766553587134063
+]} />
+
+> The chances of each letter in "arose" appearing in their respective positions for a randomly selected word.
+
+## A Less Naive Approach
+
+What if we assigned each word a score based on the combined total of each letter's likelihood of appearing in its respective position?
+
+```javascript
+// A hash map of every letter along with its positional frequencies
+const letterFrequencies = {'a': [3000, 1500, 500, 400, 1000], ...}
+
+// Generates a score for each word based on letter frequencies
+function calculateWordScore(word, letterFrequencies) {
+  let score = 0;
+  const keys = Object.keys(letterFrequencies);
+  for (let i = 0; i < word.length; i++) {
+    if (!keys.includes(word[i])) continue;
+    score += letterFrequencies[word[i]][i];
+  }
+  return score;
+}
 ```
 
-Those of you who watched Wheel of Fortune might notice that the first few letters mostly match up with the most popular choice in the final round, where contestents have to choose 4 consonants and 1 vowel: `R L S T N E`. Though `A` appears to be more common than `E`, this is only because we're limiting ourselves to 5-letter words. If we compare to any length word, we find that `E` is over 27.2% more common than `A`!
+Using this approach on every 5-letter word gets us these top five words:
+
+<WordScores data={[
+  { word: 'sanes', score: 11579 },
+  { word: 'sales', score: 11401 },
+  { word: 'sores', score: 11295 },
+  { word: 'cares', score: 11268 },
+  { word: 'bares', score: 11213 },
+]} />
+
+We're very close now. An astute observer might note that all of these words are pluralized. Unfortunately, there's a lesser-known rule of Wordle: they will never choose a pluralized word. Let's account for this simply by lowering the letter `S` score when it's in the fifth position of a word:
+
+```javascript
+letterFrequencies.s[4] = 500;
+```
+
+Choosing `500` was a bit of trial and error. A more optimal approach would be to go through all 15,918 5-letter words and eliminate the plural ones. This is an exercise left for the reader. 😉
+
+### Adjusted Top-10 Scoring Words
+
+<WordScores data={[
+  { word: 'saree', score: 10610 },
+  { word: 'soree', score: 10020 },
+  { word: 'carey', score: 9805 },
+  { word: 'sooey', score: 9442 },
+  { word: 'siree', score: 9408 },
+  { word: 'coree', score: 9403 },
+  { word: 'boree', score: 9348 },
+  { word: 'salet', score: 9343 },
+  { word: 'saner', score: 9326 },
+  { word: 'sayee', score: 9295 },
+]} />
+
+There's still a slight issue here. Some of these words are so uncommon that Wordle excludes them from its dictionary. In fact, the top 7 words are not guessable. That leaves us with `SALET` as our first guessable word. A word which means:
+
+> a light medieval helmet, usually with a vision slit or a movable visor.
+
+How does this compare to our naive approach of "arose"?
+
+<WordAnalysis word="salet" frequencies={[
+  0.113896218117854,
+  0.18036185450433473,
+  0.06659128031159693,
+  0.15762030405829877,
+  0.06847593918834025
+]} />
+
+<WordAnalysis word="arose" frequencies={[
+  0.0736901620806634,
+  0.07230807890438497,
+  0.0724965447920593,
+  0.04529463500439754,
+  0.11766553587134063
+]} />
+
+And just for fun, I calculated one of the worst starting words:
+
+<WordAnalysis word="ethyl" frequencies={[
+  0.026448046236964444,
+  0.019851740168362858,
+  0.013066968212086945,
+  0.010114335971855761,
+  0.05410700828937453
+]} />
+
+Adding up the totals for each word, we get a positive difference of 4.1% by taking letter positions into account!
+
+## Conclusion and Potential Improvements
+
+I hope you enjoyed reading about this challenge as much as I enjoyed writing about it. Using letter-frequency-analysis we figured out that `SALET` is the ideal starting word. What about future improvements?
+
+### Finding the Next Best Guess
+
+What if we could feed the results of the first guess back into our program? One way to do this would be to use the matching and missed letters to reduce the number of available words, then recalculate the frequencies like we did for the first guess. Each subsequent guess will narrow down the potential words and have a new set of words with the highest letter and positional frequencies.
