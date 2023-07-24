@@ -1,4 +1,4 @@
-const WordScores = ({ data }) => (
+const WordScores = ({ data = [] }) => (
   <table className="table-auto max-w-xs text-sm">
     <thead>
       <tr>

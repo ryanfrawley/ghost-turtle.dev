@@ -1,4 +1,4 @@
-const WordAnalysis = ({ word, frequencies }) => {
+const WordAnalysis = ({ word = "", frequencies }) => {
   return (
     <div className="flex justify-evenly">
       {word.toUpperCase().split("").map((c, index) => (

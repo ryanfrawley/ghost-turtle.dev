@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { card } from "@/components/Card";
+import { Card } from "@/components/Card";
 import { SimpleLayout } from "@/components/SimpleLayout";
 import { formatDate } from "@/lib/formatDate";
 import { getAllArticles } from "@/lib/getAllArticles";
