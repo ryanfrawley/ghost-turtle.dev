@@ -132,6 +132,8 @@ How does this compare to our naive approach of "arose"?
   0.11766553587134063
 ]} />
 
+Subtracting the differences between each letter, we get an average improvement of 4.1% per letter. This translates to a slightly higher chance of getting both the letter and position correct with "salet" vs "arose".
+
 And just for fun, I calculated one of the worst starting words:
 
 <WordAnalysis word="ethyl" frequencies={[
@@ -142,12 +144,10 @@ And just for fun, I calculated one of the worst starting words:
   0.05410700828937453
 ]} />
 
-Adding up the totals for each word, we get a positive difference of 4.1% by taking letter positions into account!
-
 ## Conclusion and Potential Improvements
 
 I hope you enjoyed reading about this challenge as much as I enjoyed writing about it. Using letter-frequency-analysis we figured out that `SALET` is the ideal starting word. What about future improvements?
 
 ### Finding the Next Best Guess
 
-What if we could feed the results of the first guess back into our program? One way to do this would be to use the matching and missed letters to reduce the number of available words, then recalculate the frequencies like we did for the first guess. Each subsequent guess will narrow down the potential words and have a new set of words with the highest letter and positional frequencies.
+What if we could feed the results of the first guess back into our program? One way to do this would be to use the matching and missed letters to reduce the number of available words, then recalculate the frequencies like we did for the first guess. Each subsequent guess will narrow down the potential words and have a new set of words with the highest letter and positional frequency probability.
