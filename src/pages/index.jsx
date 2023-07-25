@@ -238,7 +238,7 @@ function Jobs() {
       title: "Junior Engineer",
       logo: logoFedex,
       start: "2014",
-      end: "2015",
+      end: "2017",
     },
   ];
 
@@ -337,7 +337,7 @@ export default function Home({ articles }) {
       </Head>
       <Container className="mt-9">
         <div className="flex">
-          <div className="max-w-2xl flex-shrink-0">
+          <div className="w-full max-w-2xl flex-shrink-0">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
               Software designer, founder, & espresso{" "}
               <strike className="text-gray-400">snob</strike> afficionado
@@ -370,7 +370,7 @@ export default function Home({ articles }) {
               />
             </div>
           </div>
-          <div className="flex w-full max-h-full justify-end">
+          <div className="w-full max-h-full justify-end hidden md:flex">
             <Image
               src={ghostTurtle}
               className="max-w-full max-h-[350px] -mt-10"
