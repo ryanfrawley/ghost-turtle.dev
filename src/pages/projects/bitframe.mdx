@@ -1,0 +1,46 @@
+import { ProjectLayout } from '@/components/ProjectLayout'
+export default (props) => <ProjectLayout meta={meta} {...props} />
+import Image from 'next/image'
+import gallery from './gallery.jpg'
+
+export const meta = {
+  title: 'BitFrame',
+  description:
+    'A platform designed for professional photographers to manage bookings, customers, and online galleries for their studios.',
+}
+
+<Image src={gallery} />
+
+## Technologies Used
+
+### Frontend
+
+React, Tailwind, Typescript, Remix.JS, Jest
+
+### Backend
+
+Remix.JS, Node, Typescript, Azure Kubernetes Service, AWS S3, AWS Lambda, Jest, Sharp, Express, LetsEncrypt
+
+### Deployments
+
+GitHub Actions, Terraform
+
+## Technical Challenges
+
+### Thumbnail Generation
+
+One of the challenges of hosting media galleries is quickly and cost-effectively delivering the content to different screen sizes. For BitFrame, I came up with a solution which runs in a serverless environment on AWS Lambda. The simplified flow is as follows:
+
+1. Client performs a presigned upload with the full-size original media.
+2. S3 receives the blob and calls a Lambda function with the newly uploaded blob passed in as a parameter.
+3. Lambda streams this blob into the Sharp library, which generates 4 different sized thumbnails (1600, 1280, 640, 320) and saves them to another S3 bucket.
+4. Lambda updates the state of the media by performing an update query on the application database.
+5. Client polls for updated state and displays the correct thumbnail size based on screen size.
+
+### Multi-Tenant SSL-Enabled Custom Domains
+
+BitFrame offers a whitelabeled experience for photographers to use their own domain names for gallery hosting. I use LetsEncrypt to generate free certificates on behalf of the client.
+
+This proved to be a challenge because LetsEncrypt requires you to host a challenge response file on the request domain you want to sign. There's a provided command line tool to make the request and generate the challenge response file, but this tool wasn't designed to be automated. In order to get this to work, I needed to build a serverless function which runs on a cron schedule to determine which domains need to be updated. I then run the CLI tool to generate the challenge response and upload it to S3. This challenge file will be synced via another cron job to an nginx reverse proxy, which serves all of the challenge files first, then routes any other requests to the application socket.
+
+There's one more trick involved here: hosting the challenge file only gets you a signed SSL certificate. You still need to actually sign the subsequent requests using this cert. This is problematic as nginx doesn't allow dynamically importing and switching SSL certs. The solution here was to use a Lua plugin which supports dynamic certs. I was then able to modify nginx to switch which cert it signed with based on the `Host` header of the incoming request. All of this to get a nice green lock icon in the address bar. Phew!
