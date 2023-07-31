@@ -332,7 +332,7 @@ export default function Home({ articles }) {
         </title>
         <meta
           name="description"
-          content="I’m Ryan, a software designer and entrepreneur based in Miami. I’m the founder and CEO of BitFrame, a SaaS platform for professional photographers to manage their studios."
+          content="I’m Ryan, a software designer and entrepreneur based in Miami. I’m the solo-founder of BitFrame, a SaaS platform for professional photographers to manage their studios."
         />
       </Head>
       <Container className="mt-9">
@@ -340,12 +340,12 @@ export default function Home({ articles }) {
           <div className="w-full max-w-2xl flex-shrink-0">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
               Software designer, founder, & espresso{" "}
-              <strike className="text-gray-400">snob</strike> afficionado
+              <strike className="text-gray-400">snob</strike> enthusiast
             </h1>
             <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
               I’m Ryan, a software designer and entrepreneur based in Miami. I’m
-              the founder and CEO of BitFrame, where we build software for
-              photographers to manage their studio and deliverables.
+              the founder of BitFrame, where we build software for photographers
+              to manage their studio and deliverables.
             </p>
             <div className="mt-6 flex gap-6">
               <SocialLink
