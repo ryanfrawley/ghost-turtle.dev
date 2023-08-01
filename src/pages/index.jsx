@@ -22,11 +22,11 @@ import logoAws from "@/images/logos/aws.svg";
 import logoMajesco from "@/images/logos/majesco.svg";
 import logoScaledAgile from "@/images/logos/scaled-agile.svg";
 import ghostTurtle from "@/images/ghost-turtle.svg";
-import image1 from "@/images/photos/image-1.jpg";
-import image2 from "@/images/photos/image-2.jpg";
-import image3 from "@/images/photos/image-3.jpg";
-import image4 from "@/images/photos/image-4.jpg";
-import image5 from "@/images/photos/image-5.jpg";
+import image1 from "@/images/photos/0.jpg";
+import image2 from "@/images/photos/1.jpg";
+import image3 from "@/images/photos/2.jpg";
+import image4 from "@/images/photos/3.jpg";
+import image5 from "@/images/photos/6.jpg";
 import { formatDate } from "@/lib/formatDate";
 import { generateRssFeed } from "@/lib/generateRssFeed";
 import { getAllArticles } from "@/lib/getAllArticles";
@@ -187,7 +187,7 @@ function Jobs() {
   let jobs = [
     {
       company: "BitFrame",
-      title: "CEO & Founder",
+      title: "Sole-proprietor",
       logo: logoBitFrame,
       start: "2019",
       end: {
@@ -343,9 +343,9 @@ export default function Home({ articles }) {
               <strike className="text-gray-400">snob</strike> enthusiast
             </h1>
             <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-              I’m Ryan, a software designer and entrepreneur based in Miami. I’m
-              the founder of BitFrame, where we build software for photographers
-              to manage their studio and deliverables.
+              Hi, I’m Ryan, a software designer and entrepreneur based in Miami.
+              I’m the founder of BitFrame, where we build software for
+              photographers to manage their studio and deliverables.
             </p>
             <div className="mt-6 flex gap-6">
               <SocialLink

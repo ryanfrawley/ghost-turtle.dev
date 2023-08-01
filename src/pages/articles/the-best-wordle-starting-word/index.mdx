@@ -45,7 +45,17 @@ Those of you with a keen eye may have noticed that the first few letters match u
 
 ## Why We Can't "Arise" to Victory
 
-Why isn't `AROSE` the best word? After all, it uses all of the top five letters we just calculated. It turns out we overlooked one important detail: **letter positions**. If all letters had an equal 1/5 or 20% chance of appearing in any given position in a word, "arose" would be one of the best words. However, this is not the case. For example, it turns out that `S` is almost 6% more likely to appear as the first letter than the fourth letter in a word.
+Why isn't `AROSE` the best word? After all, it uses all of the top five letters we just calculated. It turns out we overlooked one important detail: **letter positions**. If all letters had an equal 1/5 or 20% chance of appearing in any given position in a word, "arose" would be one of the best words. However, this is not the case. For example, `S` is almost 6% more likely to appear as the first letter than the fourth letter in a word.
+j
+<WordAnalysis word="12345" frequencies={[
+  0.113896218117854,
+  0.010868199522553084,
+  0.04284457846463124,
+  0.04529463500439754,
+  0.037678975131876416
+]} />
+
+> The chances of the letter `S` appearing in each letter position of a word.
 
 <WordAnalysis word="arose" frequencies={[
   0.0736901620806634,
@@ -56,6 +66,7 @@ Why isn't `AROSE` the best word? After all, it uses all of the top five letters 
 ]} />
 
 > The chances of each letter in "arose" appearing in their respective positions for a randomly selected word.
+
 
 ## A Less Naive Approach
 
