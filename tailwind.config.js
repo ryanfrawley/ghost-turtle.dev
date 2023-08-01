@@ -4,6 +4,22 @@ module.exports = {
   darkMode: "class",
   plugins: [require("@tailwindcss/typography")],
   theme: {
+    extend: {
+      keyframes: {
+        ghost: {
+          "0%, 100%": { transform: "translateY(-6%)" },
+          "50%": { transform: "translateY(0%)" },
+        },
+        shadow: {
+          "0%, 100%": { transform: "scale(90%)", opacity: .8 },
+          "50%": { transform: "scale(110%)", opacity: 1 },
+        },
+      },
+      animation: {
+        ghost: "ghost 5s ease-in-out infinite",
+        shadow: "shadow 5s ease-in-out infinite",
+      },
+    },
     fontSize: {
       xs: ["0.8125rem", { lineHeight: "1.5rem" }],
       sm: ["0.875rem", { lineHeight: "1.5rem" }],

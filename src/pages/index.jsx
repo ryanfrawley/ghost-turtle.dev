@@ -22,6 +22,7 @@ import logoAws from "@/images/logos/aws.svg";
 import logoMajesco from "@/images/logos/majesco.svg";
 import logoScaledAgile from "@/images/logos/scaled-agile.svg";
 import ghostTurtle from "@/images/ghost-turtle.svg";
+import shadow from "@/images/shadow.svg";
 import image1 from "@/images/photos/0.jpg";
 import image2 from "@/images/photos/1.jpg";
 import image3 from "@/images/photos/2.jpg";
@@ -373,7 +374,11 @@ export default function Home({ articles }) {
           <div className="w-full max-h-full justify-end hidden md:flex">
             <Image
               src={ghostTurtle}
-              className="max-w-full max-h-[350px] -mt-10"
+              className="max-w-full max-h-[350px] -mt-10 animate-ghost"
+            />
+            <Image
+              src={shadow}
+              className="absolute bottom-0 max-w-full max-h-[350px] -mt-10 animate-shadow origin-bottom"
             />
           </div>
         </div>
