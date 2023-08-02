@@ -12,7 +12,7 @@ module.exports = {
         },
         shadow: {
           "0%, 100%": { transform: "scale(90%)", opacity: .8 },
-          "50%": { transform: "scale(110%)", opacity: 1 },
+          "50%": { transform: "scale(105%)", opacity: 1 },
         },
       },
       animation: {

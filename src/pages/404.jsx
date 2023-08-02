@@ -1,13 +1,13 @@
-import Head from 'next/head'
+import Head from "next/head";
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
+import { Button } from "@/components/Button";
+import { Container } from "@/components/Container";
 
 export default function NotFound() {
   return (
     <>
       <Head>
-        <title>Page not found - Spencer Sharp</title>
+        <title>Page not found - Ryan Frawley</title>
       </Head>
       <Container className="flex h-full items-center pt-16 sm:pt-32">
         <div className="flex flex-col items-center">
@@ -26,5 +26,5 @@ export default function NotFound() {
         </div>
       </Container>
     </>
-  )
+  );
 }
