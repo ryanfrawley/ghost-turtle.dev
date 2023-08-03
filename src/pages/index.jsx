@@ -394,9 +394,17 @@ export default function Home({ articles }) {
           <div className="space-y-4 lg:pl-16 xl:pl-24">
             <Resume />
             <Button
-              href="#"
+              href="/ryan-frawley-dark.pdf"
               variant="secondary"
-              className="group mt-6 w-full shadow-sm"
+              className="group mt-6 w-full shadow-sm hidden dark:flex"
+            >
+              Download CV
+              <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+            </Button>
+            <Button
+              href="/ryan-frawley-light.pdf"
+              variant="secondary"
+              className="group mt-6 w-full shadow-sm dark:hidden"
             >
               Download CV
               <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
