@@ -4,7 +4,7 @@
         <title>Ryan Frawley</title>
         <link>https://ghost-turtle.dev</link>
         <description>Things I find interesting enough to share with the world.</description>
-        <lastBuildDate>Fri, 28 Jul 2023 01:16:07 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 04 Aug 2023 00:06:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -34,7 +34,12 @@
 <h3>Breaking Down the Results</h3>
 <p><code>A</code> is the most common vowel, coming in at 8,392 uses. <code>S</code> is the most common consonant, clocking in at 6,537 appearances. The next most-common letter is <code>R</code>, at 5,143 uses. We could stop right here and come up with a word that contains all of the top letters: <code>A E S O R</code> such as <code>AROSE</code>. That&#x27;s a pretty good starting word, but we can do better.</p>
 <h2>Why We Can&#x27;t &quot;Arise&quot; to Victory</h2>
-<p>Why isn&#x27;t <code>AROSE</code> the best word? After all, it uses all of the top five letters we just calculated. It turns out we overlooked one important detail: <strong>letter positions</strong>. If all letters had an equal 1/5 or 20% chance of appearing in any given position in a word, &quot;arose&quot; would be one of the best words. However, this is not the case. For example, it turns out that <code>S</code> is almost 6% more likely to appear as the first letter than the fourth letter in a word.</p>
+<p>Why isn&#x27;t <code>AROSE</code> the best word? After all, it uses all of the top five letters we just calculated. It turns out we overlooked one important detail: <strong>letter positions</strong>. If all letters had an equal 1/5 or 20% chance of appearing in any given position in a word, &quot;arose&quot; would be one of the best words. However, this is not the case. For example, <code>S</code> is almost 6% more likely to appear as the first letter than the fourth letter in a word.
+j</p>
+<div class="flex justify-evenly"><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">1</div><div class="text-md text-gray-600 text-center dark:text-gray-400">11.4%</div></div><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">2</div><div class="text-md text-gray-600 text-center dark:text-gray-400">1.1%</div></div><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">3</div><div class="text-md text-gray-600 text-center dark:text-gray-400">4.3%</div></div><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">4</div><div class="text-md text-gray-600 text-center dark:text-gray-400">4.5%</div></div><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">5</div><div class="text-md text-gray-600 text-center dark:text-gray-400">3.8%</div></div></div>
+<blockquote>
+<p>The chances of the letter <code>S</code> appearing in each letter position of a word.</p>
+</blockquote>
 <div class="flex justify-evenly"><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">A</div><div class="text-md text-gray-600 text-center dark:text-gray-400">7.4%</div></div><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">R</div><div class="text-md text-gray-600 text-center dark:text-gray-400">7.2%</div></div><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">O</div><div class="text-md text-gray-600 text-center dark:text-gray-400">7.2%</div></div><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">S</div><div class="text-md text-gray-600 text-center dark:text-gray-400">4.5%</div></div><div class="flex flex-col"><div class="border-2 border-gray-300 px-4 text-7xl font-mono font-bold">E</div><div class="text-md text-gray-600 text-center dark:text-gray-400">11.8%</div></div></div>
 <blockquote>
 <p>The chances of each letter in &quot;arose&quot; appearing in their respective positions for a randomly selected word.</p>

@@ -11,7 +11,7 @@ const projects = [
     name: "BitFrame",
     description:
       "A platform designed for professional photographers to manage bookings, customers, and deliverables for their studios.",
-    link: { href: "/projects/bitframe", label: "ghost-turtle.dev" },
+    link: { href: "/projects/bitframe", label: "ryanfrawley.io" },
     logo: logoBitFrame,
   },
   {
