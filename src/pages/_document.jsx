@@ -1,5 +1,4 @@
 import { Head, Html, Main, NextScript } from "next/document";
-import { Analytics } from "@vercel/analytics/react";
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -55,7 +54,6 @@ export default function Document() {
       <body className="flex h-full bg-zinc-50 dark:bg-black [&>#\_\_next]:flex [&>#\_\_next]:w-full">
         <Main />
         <NextScript />
-        <Analytics />
       </body>
     </Html>
   );
